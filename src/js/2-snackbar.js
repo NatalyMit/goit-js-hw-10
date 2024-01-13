@@ -8,20 +8,14 @@ formEl.addEventListener('submit', e => {
   console.log(e);
   e.preventDefault();
 
-  createPromise(value, delay);
-});
-let delay = Number(e.currentTarget.delay.value);
-// function onSubmitForm(e) {
+  let delay = Number(e.currentTarget.delay.value);
 
-// }
-
-function createPromise(value, delay) {
   const shouldResolve = e.currentTarget.state.value;
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      if ((shouldResolve = fulfilled)) {
+      if (shouldResolve === 'fulfilled') {
         resolve();
-      } else {
+      } else if (shouldResolve === 'rejected') {
         reject();
       }
     }, delay);
@@ -51,4 +45,4 @@ function createPromise(value, delay) {
       });
     }, delay);
   e.currentTarget.reset();
-}
+});
