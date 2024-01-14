@@ -36,9 +36,14 @@ button {
   gap: 10px;
   border-radius: 8px;
   background: #cfcfcf;
+  color: #fff;
   margin-bottom: 32px;
+  cursor: pointer;
 }
-
+button:hover {
+  background: #6c8cff;
+  color: #fff;
+}
 .timer {
   display: flex;
   gap: 24px;
