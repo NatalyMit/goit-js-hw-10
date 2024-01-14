@@ -14,9 +14,9 @@ formEl.addEventListener('submit', e => {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (shouldResolve === 'fulfilled') {
-        resolve();
+        resolve(delay);
       } else if (shouldResolve === 'rejected') {
-        reject();
+        reject(delay);
       }
     }, delay);
   });

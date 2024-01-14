@@ -36,6 +36,13 @@ ul {
 a {
   color: currentColor;
   text-decoration: none;
+  color: #2e2f42;
+  font-family: Montserrat;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 48px; /* 120% */
+  letter-spacing: 1.6px;
 }
 
 button {
