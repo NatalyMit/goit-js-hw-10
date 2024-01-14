@@ -4,13 +4,14 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const formEl = document.querySelector('.form');
+
 formEl.addEventListener('submit', e => {
   console.log(e);
   e.preventDefault();
 
-  let delay = Number(e.currentTarget.delay.value);
+  let delay = formEl.delay.value;
 
-  const shouldResolve = e.currentTarget.state.value;
+  const shouldResolve = formEl.state.value;
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (shouldResolve === 'fulfilled') {
@@ -22,26 +23,22 @@ formEl.addEventListener('submit', e => {
   });
 
   promise
-    .then((value, delay) => {
-      setTimeout(() => {
-        iziToast.show({
-          title: 'Congratulations',
-          messageColor: 'rose',
-          message: `✅ Fulfilled promise in ${delay}ms`,
-          position: 'topCenter',
-          color: 'green',
-        });
+    .then(delay => {
+      iziToast.show({
+        title: 'Congratulations',
+        messageColor: 'rose',
+        message: `✅ Fulfilled promise in ${delay}ms`,
+        position: 'topCenter',
+        color: 'green',
       });
     }, delay)
-    .catch((value, delay) => {
-      setTimeout(() => {
-        iziToast.show({
-          title: 'Looser',
-          messageColor: 'black',
-          message: `❌ Rejected promise in ${delay}ms`,
-          position: 'topCenter',
-          color: 'red',
-        });
+    .catch(delay => {
+      iziToast.show({
+        title: 'Looser',
+        messageColor: 'black',
+        message: `❌ Rejected promise in ${delay}ms`,
+        position: 'topCenter',
+        color: 'red',
       });
     }, delay);
   e.currentTarget.reset();
