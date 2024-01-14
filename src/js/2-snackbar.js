@@ -1,5 +1,3 @@
-import flatpickr from 'flatpickr';
-import 'flatpickr/dist/flatpickr.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
@@ -11,31 +9,29 @@ formEl.addEventListener('submit', e => {
 
   let delay = formEl.delay.value;
 
-  const shouldResolve = formEl.state.value;
+  const selectedState = formEl.state.value;
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (shouldResolve === 'fulfilled') {
+      if (selectedState === 'fulfilled') {
         resolve(delay);
-      } else if (shouldResolve === 'rejected') {
+      } else if (selectedState === 'rejected') {
         reject(delay);
       }
     }, delay);
   });
 
   promise
-    .then(delay => {
+    .then(response => {
       iziToast.show({
-        title: 'Congratulations',
-        messageColor: 'rose',
+        messageColor: 'white',
         message: `✅ Fulfilled promise in ${delay}ms`,
         position: 'topCenter',
-        color: 'green',
+        backgroundColor: 'green',
       });
     }, delay)
-    .catch(delay => {
+    .catch(error => {
       iziToast.show({
-        title: 'Looser',
-        messageColor: 'black',
+        messageColor: 'white',
         message: `❌ Rejected promise in ${delay}ms`,
         position: 'topCenter',
         color: 'red',

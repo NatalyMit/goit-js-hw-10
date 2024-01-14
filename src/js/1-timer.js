@@ -3,6 +3,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
+const inputEl = document.querySelector('#datetime-picker');
 const buttonEl = document.querySelector('[data-start]');
 const daysTime = document.querySelector('[data-days]');
 const hoursTime = document.querySelector('[data-hours]');
@@ -40,24 +41,24 @@ class Timer {
       const currentTime = Date.now();
       const someTime = userSelectedDate - currentTime;
       const time = convertMs(someTime);
+
       this.onTick(time);
-      //   buttonEl.disabled = true;
-      //   input.disabled = true;
+      buttonEl.disabled = true;
+      inputEl.disabled = true;
 
       if (someTime < 1000) {
         iziToast.show({
           title: 'Congratulations',
-          messageColor: 'rose',
+          messageColor: 'white',
           message: 'Finish. You can use the timer again',
           position: 'topCenter',
           color: 'green',
         });
+
         clearInterval(idInterval);
         this.isActive = false;
-        const time = this.convertMs(0);
+        // const time = this.convertMs(0);
         this.onTick(time);
-        // buttonEl.disabled = false;
-        // input.disabled = false;
       }
     }, 1000));
   }
@@ -97,7 +98,7 @@ function onValidUserSelected(userSelectedDate) {
     buttonEl.disabled = true;
     iziToast.show({
       title: 'Error',
-      messageColor: 'red',
+      messageColor: 'white',
       message: 'Please choose a date in the future!',
       position: 'topCenter',
       color: 'red',
@@ -106,8 +107,8 @@ function onValidUserSelected(userSelectedDate) {
     buttonEl.disabled = false;
     iziToast.show({
       title: 'Good work',
-      messageColor: 'blue',
-      message: 'Lets start?',
+      messageColor: 'white',
+      message: 'Start?',
       position: 'topCenter',
       color: 'green',
     });
