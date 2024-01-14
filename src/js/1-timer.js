@@ -59,6 +59,8 @@ class Timer {
         this.isActive = false;
         // const time = this.convertMs(0);
         this.onTick(time);
+        buttonEl.disabled = false;
+        inputEl.disabled = false;
       }
     }, 1000));
   }
